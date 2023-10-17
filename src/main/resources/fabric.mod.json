@@ -1,31 +1,31 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "redstone-overpower",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Redstone overpower",
+	"description": "Expand redstone posibilities to the limit!",
 	"authors": [
-		"Me!"
+		"John-Development"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/John-Development",
+		"sources": "https://github.com/John-Development/redstone-overpower"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/redstoneOverpower/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+      "net.redstoneOverpower.RedstoneOverpower"
 		],
 		"client": [
-			"com.example.ExampleModClient"
+      "net.redstoneOverpower.RedstoneOverpowerClient"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
+		"redstoneOverpower.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "redstoneOverpower.client.mixins.json",
 			"environment": "client"
 		}
 	],
