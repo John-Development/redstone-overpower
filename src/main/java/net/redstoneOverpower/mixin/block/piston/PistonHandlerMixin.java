@@ -48,9 +48,6 @@ public abstract class PistonHandlerMixin {
 
   @Unique
   private boolean canConnectChain(BlockState state, Direction dir) {
-    System.out.println("state" + state);
-    System.out.println("dir" + dir);
-
     return switch (dir) {
       case UP, DOWN -> state.get(Properties.AXIS) == Direction.Axis.Y;
       case NORTH, SOUTH -> state.get(Properties.AXIS) == Direction.Axis.Z;
@@ -60,7 +57,6 @@ public abstract class PistonHandlerMixin {
 
   @Unique
   private boolean isAdjacentBlockStuck(BlockState state, BlockState adjacentState, Direction dir) {
-    System.out.println("motiondir y dir " + motionDirection + " " + dir);
     if (state.isOf(Blocks.CHAIN) && adjacentState.isOf(Blocks.CHAIN) && dir.getAxis() == motionDirection.getAxis()) {
       return canConnectChain(state, motionDirection.getOpposite()) && canConnectChain(adjacentState, motionDirection);
     }
@@ -68,7 +64,9 @@ public abstract class PistonHandlerMixin {
       return false;
     }
     if (adjacentState.isOf(Blocks.CHAIN)
-      && (!state.isOf(Blocks.SLIME_BLOCK) && !state.isOf(Blocks.HONEY_BLOCK) && !canConnectChain(adjacentState, dir.getOpposite()))
+      && !state.isOf(Blocks.SLIME_BLOCK)
+      && !state.isOf(Blocks.HONEY_BLOCK)
+      && !canConnectChain(adjacentState, dir.getOpposite())
     ) {
       return false;
     }
@@ -101,7 +99,7 @@ public abstract class PistonHandlerMixin {
 
   /**
    * @author Juarrin
-   * @reason redo chain logic
+   * @reason different isAdjacentBlockStuck invocation
    */
   @Overwrite
   private boolean tryMove(BlockPos pos, Direction dir) {
