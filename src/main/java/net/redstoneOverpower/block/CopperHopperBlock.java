@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.redstoneOverpower.block.entity.CopperHopperBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-import static net.redstoneOverpower.RedstoneOverpower.COPPER_HOPPER_BLOCK_ENTITY;
+import static net.redstoneOverpower.utils.Initialiser.COPPER_HOPPER_BLOCK_ENTITY;
 
 public class CopperHopperBlock extends HopperBlock implements Oxidizable {
   private final OxidationLevel oxidationLevel;

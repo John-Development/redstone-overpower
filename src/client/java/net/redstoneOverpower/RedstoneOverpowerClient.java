@@ -4,7 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.redstoneOverpower.client.gui.screen.ingame.CopperHopperScreen;
 
-import static net.redstoneOverpower.RedstoneOverpower.COPPER_HOPPER_SCREEN_HANDLER;
+import static net.redstoneOverpower.utils.Initialiser.COPPER_HOPPER_SCREEN_HANDLER;
 
 public class RedstoneOverpowerClient implements ClientModInitializer {
 	@Override

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
+import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,8 +15,12 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.redstoneOverpower.block.LogicalComparatorBlock;
+import net.redstoneOverpower.block.entity.CopperHopperBlockEntity;
+import net.redstoneOverpower.block.entity.LogicalComparatorBlockEntity;
+import net.redstoneOverpower.block.screen.CopperHopperScreenHandler;
 
 import static net.redstoneOverpower.RedstoneOverpower.MOD_ID;
 import static net.redstoneOverpower.utils.CopperHopperVariants.*;
@@ -23,6 +28,23 @@ import static net.redstoneOverpower.utils.CopperHopperVariants.*;
 public class Initialiser {
 
   public static final LogicalComparatorBlock LOGICAL_COMPARATOR_BLOCK = new LogicalComparatorBlock(FabricBlockSettings.copyOf(Blocks.COMPARATOR));
+
+  public static BlockEntityType<CopperHopperBlockEntity> COPPER_HOPPER_BLOCK_ENTITY = Registry.register(
+          Registries.BLOCK_ENTITY_TYPE,
+          new Identifier(MOD_ID, "copper_hopper"),
+          FabricBlockEntityTypeBuilder.create(CopperHopperBlockEntity::new, UNAFFECTED_COPPER_HOPPER_BLOCK).build()
+  );
+
+  public static final BlockEntityType<LogicalComparatorBlockEntity> LOGICAL_COMPARATOR_ENTITY = Registry.register(
+          Registries.BLOCK_ENTITY_TYPE,
+          new Identifier(MOD_ID, "logical_comparator_block_entity"),
+          FabricBlockEntityTypeBuilder.create(LogicalComparatorBlockEntity::new, LOGICAL_COMPARATOR_BLOCK).build()
+  );
+
+  public static final ScreenHandlerType<CopperHopperScreenHandler> COPPER_HOPPER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(
+          new Identifier(MOD_ID, "copper_hopper"),
+          CopperHopperScreenHandler::new
+  );
 
   private static void registerBlockItem(String path, Block block) {
     Registry.register(Registries.BLOCK, new Identifier(MOD_ID, path), block);

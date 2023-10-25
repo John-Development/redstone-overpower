@@ -29,7 +29,7 @@ import java.util.function.BooleanSupplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static net.redstoneOverpower.RedstoneOverpower.COPPER_HOPPER_BLOCK_ENTITY;
+import static net.redstoneOverpower.utils.Initialiser.COPPER_HOPPER_BLOCK_ENTITY;
 
 public class CopperHopperBlockEntity extends LootableContainerBlockEntity implements Hopper {
     public static final int TRANSFER_COOLDOWN = 8;

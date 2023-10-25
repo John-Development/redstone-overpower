@@ -9,7 +9,7 @@ import net.minecraft.screen.ScreenHandler;
 
 import net.minecraft.screen.slot.Slot;
 
-import static net.redstoneOverpower.RedstoneOverpower.COPPER_HOPPER_SCREEN_HANDLER;
+import static net.redstoneOverpower.utils.Initialiser.COPPER_HOPPER_SCREEN_HANDLER;
 
 public class CopperHopperScreenHandler extends ScreenHandler {
   public static final int SLOT_COUNT = 4;
