@@ -10,7 +10,6 @@ public enum LogicalComparatorMode implements StringIdentifiable {
         NOR("nor"),
         XNOR("xnor");
 
-
         private final String name;
 
         LogicalComparatorMode(String name) {

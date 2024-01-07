@@ -1,0 +1,184 @@
+{
+  "variants": {
+    "facing=east,mode=and,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_and",
+      "y": 270
+    },
+    "facing=east,mode=and,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_and",
+      "y": 270
+    },
+    "facing=east,mode=or,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_or",
+      "y": 270
+    },
+    "facing=east,mode=or,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_or",
+      "y": 270
+    },
+    "facing=east,mode=xor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_xor",
+      "y": 270
+    },
+    "facing=east,mode=xor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_xor",
+      "y": 270
+    },
+    "facing=east,mode=nand,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_nand",
+      "y": 270
+    },
+    "facing=east,mode=nand,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_nand",
+      "y": 270
+    },
+    "facing=east,mode=nor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_nor",
+      "y": 270
+    },
+    "facing=east,mode=nor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_nor",
+      "y": 270
+    },
+    "facing=east,mode=xnor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_xnor",
+      "y": 270
+    },
+    "facing=east,mode=xnor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_xnor",
+      "y": 270
+    },
+    "facing=north,mode=and,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_and",
+      "y": 180
+    },
+    "facing=north,mode=and,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_and",
+      "y": 180
+    },
+    "facing=north,mode=or,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_or",
+      "y": 180
+    },
+    "facing=north,mode=or,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_or",
+      "y": 180
+    },
+    "facing=north,mode=xor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_xor",
+      "y": 180
+    },
+    "facing=north,mode=xor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_xor",
+      "y": 180
+    },
+    "facing=north,mode=nand,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_nand",
+      "y": 180
+    },
+    "facing=north,mode=nand,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_nand",
+      "y": 180
+    },
+    "facing=north,mode=nor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_nor",
+      "y": 180
+    },
+    "facing=north,mode=nor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_nor",
+      "y": 180
+    },
+    "facing=north,mode=xnor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_xnor",
+      "y": 180
+    },
+    "facing=north,mode=xnor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_xnor",
+      "y": 180
+    },
+    "facing=south,mode=and,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_and"
+    },
+    "facing=south,mode=and,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_and"
+    },
+    "facing=south,mode=or,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_or"
+    },
+    "facing=south,mode=or,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_or"
+    },
+    "facing=south,mode=xor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_xor"
+    },
+    "facing=south,mode=xor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_xor"
+    },
+    "facing=south,mode=nand,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_nand"
+    },
+    "facing=south,mode=nand,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_nand"
+    },
+    "facing=south,mode=nor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_nor"
+    },
+    "facing=south,mode=nor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_nor"
+    },
+    "facing=south,mode=xnor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_xnor"
+    },
+    "facing=south,mode=xnor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_xnor"
+    },
+    "facing=west,mode=and,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_and",
+      "y": 90
+    },
+    "facing=west,mode=and,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_and",
+      "y": 90
+    },
+    "facing=west,mode=or,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_or",
+      "y": 90
+    },
+    "facing=west,mode=or,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_or",
+      "y": 90
+    },
+    "facing=west,mode=xor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_xor",
+      "y": 90
+    },
+    "facing=west,mode=xor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_xor",
+      "y": 90
+    },
+    "facing=west,mode=nand,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_nand",
+      "y": 90
+    },
+    "facing=west,mode=nand,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_nand",
+      "y": 90
+    },
+    "facing=west,mode=nor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_nor",
+      "y": 90
+    },
+    "facing=west,mode=nor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_nor",
+      "y": 90
+    },
+    "facing=west,mode=xnor,powered=false": {
+      "model": "redstoneoverpower:block/logical_comparator_xnor",
+      "y": 90
+    },
+    "facing=west,mode=xnor,powered=true": {
+      "model": "redstoneoverpower:block/logical_comparator_on_xnor",
+      "y": 90
+    }
+  }
+}

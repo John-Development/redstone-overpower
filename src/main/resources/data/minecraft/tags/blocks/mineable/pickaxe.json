@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "redstone-overpower:copper_hopper",
-    "redstone-overpower:weathered_copper_hopper",
-    "redstone-overpower:exposed_copper_hopper",
-    "redstone-overpower:oxidized_copper_hopper"
+    "redstoneoverpower:copper_hopper",
+    "redstoneoverpower:weathered_copper_hopper",
+    "redstoneoverpower:exposed_copper_hopper",
+    "redstoneoverpower:oxidized_copper_hopper"
   ]
 }

@@ -57,6 +57,7 @@ public class Initialiser {
     FabricBlockEntityTypeBuilder.Factory<? extends T> factory
   ) {
     registerBlockItem(path, block);
+
     return Registry.register(
       Registries.BLOCK_ENTITY_TYPE,
       new Identifier(MOD_ID, path),
@@ -73,7 +74,7 @@ public class Initialiser {
     registerBlockItem("waxed_weathered_copper_hopper", WEATHERED_WAXED_COPPER_HOPPER_BLOCK);
     registerBlockItem("waxed_oxidized_copper_hopper", OXIDIZED_WAXED_COPPER_HOPPER_BLOCK);
     registerBlockItem("waxed_exposed_copper_hopper", EXPOSED_WAXED_COPPER_HOPPER_BLOCK);
-    registerBlockItem("logical_comparator", LOGICAL_COMPARATOR_BLOCK);
+    registerBlockEntityItem("logical_comparator", LOGICAL_COMPARATOR_BLOCK, LogicalComparatorBlockEntity::new);
   }
 
   public static void initOxidizableChains() {
@@ -88,6 +89,7 @@ public class Initialiser {
 
   public static void initCreativePlacement() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
+      content.addAfter(Items.COMPARATOR, LOGICAL_COMPARATOR_BLOCK);
       content.addAfter(Items.HOPPER, UNAFFECTED_COPPER_HOPPER_BLOCK);
       content.addAfter(UNAFFECTED_COPPER_HOPPER_BLOCK, UNAFFECTED_WAXED_COPPER_HOPPER_BLOCK);
       content.addAfter(UNAFFECTED_WAXED_COPPER_HOPPER_BLOCK, EXPOSED_COPPER_HOPPER_BLOCK);

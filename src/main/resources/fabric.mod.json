@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "redstone-overpower",
+	"id": "redstoneoverpower",
 	"version": "${version}",
 	"name": "Redstone overpower",
 	"description": "Expand redstone posibilities to the limit!",
@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-      "net.redstoneOverpower.RedstoneOverpower"
+      		"net.redstoneOverpower.RedstoneOverpower"
 		],
 		"client": [
-      "net.redstoneOverpower.RedstoneOverpowerClient"
+      		"net.redstoneOverpower.RedstoneOverpowerClient"
 		]
 	},
 	"mixins": [

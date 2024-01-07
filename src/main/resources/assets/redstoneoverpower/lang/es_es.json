@@ -1,0 +1,11 @@
+{
+    "block.redstoneoverpower.logical_comparator": "Comparador lógico",
+    "block.redstoneoverpower.copper_hopper": "Tolva de cobre",
+    "block.redstoneoverpower.waxed_copper_hopper": "Tolva de cobre encerada",
+    "block.redstoneoverpower.exposed_copper_hopper": "Tolva de cobre expuesta",
+    "block.redstoneoverpower.waxed_exposed_copper_hopper": "Tolva de cobre expuesta encerada",
+    "block.redstoneoverpower.weathered_copper_hopper": "Tolva de cobre degradada",
+    "block.redstoneoverpower.waxed_weathered_copper_hopper": "Tolva de cobre degradada encerada",
+    "block.redstoneoverpower.oxidized_copper_hopper": "Tolva de cobre oxidada",
+    "block.redstoneoverpower.waxed_oxidized_copper_hopper": "Tolva de cobre oxidada encerada"
+}
