@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "mode=listen": {
+      "model": "minecraft:block/observer"
+    },
+    "mode=isolated": {
+      "model": "minecraft:block/white_wool"
+    },
+    "mode=cooldown": {
+      "model": "minecraft:block/magenta_glazed_terracotta"
+    },
+    "mode=charged": {
+      "model": "minecraft:block/redstone_lamp_on"
+    }
+  }
+}

@@ -6,8 +6,7 @@ import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.redstoneOverpower.client.gui.screen.ingame.CopperHopperScreen;
 
-import static net.redstoneOverpower.utils.Initialiser.COPPER_HOPPER_SCREEN_HANDLER;
-import static net.redstoneOverpower.utils.Initialiser.LOGICAL_COMPARATOR_BLOCK;
+import static net.redstoneOverpower.utils.Initialiser.*;
 
 public class RedstoneOverpowerClient implements ClientModInitializer {
 	@Override

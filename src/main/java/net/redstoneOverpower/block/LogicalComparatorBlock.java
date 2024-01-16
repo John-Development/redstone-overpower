@@ -52,6 +52,7 @@ public class LogicalComparatorBlock extends AbstractRedstoneGateBlock implements
             state = state.cycle(MODE);
             world.setBlockState(pos, state, 3);
             this.update(world, pos, state);
+
             return ActionResult.success(world.isClient);
         }
     }

@@ -18,8 +18,10 @@ import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.redstoneOverpower.block.LogicalComparatorBlock;
+import net.redstoneOverpower.block.SculkChamberBlock;
 import net.redstoneOverpower.block.entity.CopperHopperBlockEntity;
 import net.redstoneOverpower.block.entity.LogicalComparatorBlockEntity;
+import net.redstoneOverpower.block.entity.SculkChamberBlockEntity;
 import net.redstoneOverpower.block.screen.CopperHopperScreenHandler;
 
 import static net.redstoneOverpower.RedstoneOverpower.MOD_ID;
@@ -28,22 +30,29 @@ import static net.redstoneOverpower.utils.CopperHopperVariants.*;
 public class Initialiser {
 
   public static final LogicalComparatorBlock LOGICAL_COMPARATOR_BLOCK = new LogicalComparatorBlock(FabricBlockSettings.copyOf(Blocks.COMPARATOR));
+  public static final SculkChamberBlock SCULK_CHAMBER_BLOCK = new SculkChamberBlock(FabricBlockSettings.create().strength(1.0f));
 
   public static BlockEntityType<CopperHopperBlockEntity> COPPER_HOPPER_BLOCK_ENTITY = Registry.register(
-          Registries.BLOCK_ENTITY_TYPE,
-          new Identifier(MOD_ID, "copper_hopper"),
-          FabricBlockEntityTypeBuilder.create(CopperHopperBlockEntity::new, UNAFFECTED_COPPER_HOPPER_BLOCK).build()
+    Registries.BLOCK_ENTITY_TYPE,
+    new Identifier(MOD_ID, "copper_hopper"),
+    FabricBlockEntityTypeBuilder.create(CopperHopperBlockEntity::new, UNAFFECTED_COPPER_HOPPER_BLOCK).build()
   );
 
   public static final BlockEntityType<LogicalComparatorBlockEntity> LOGICAL_COMPARATOR_ENTITY = Registry.register(
-          Registries.BLOCK_ENTITY_TYPE,
-          new Identifier(MOD_ID, "logical_comparator_block_entity"),
-          FabricBlockEntityTypeBuilder.create(LogicalComparatorBlockEntity::new, LOGICAL_COMPARATOR_BLOCK).build()
+    Registries.BLOCK_ENTITY_TYPE,
+    new Identifier(MOD_ID, "logical_comparator_block_entity"),
+    FabricBlockEntityTypeBuilder.create(LogicalComparatorBlockEntity::new, LOGICAL_COMPARATOR_BLOCK).build()
+  );
+
+  public static final BlockEntityType<SculkChamberBlockEntity> SCULK_CHAMBER_BLOCK_ENTITY = Registry.register(
+    Registries.BLOCK_ENTITY_TYPE,
+    new Identifier(MOD_ID, "sculk_chamber_block_entity"),
+    FabricBlockEntityTypeBuilder.create(SculkChamberBlockEntity::new, SCULK_CHAMBER_BLOCK).build()
   );
 
   public static final ScreenHandlerType<CopperHopperScreenHandler> COPPER_HOPPER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(
-          new Identifier(MOD_ID, "copper_hopper"),
-          CopperHopperScreenHandler::new
+    new Identifier(MOD_ID, "copper_hopper"),
+    CopperHopperScreenHandler::new
   );
 
   private static void registerBlockItem(String path, Block block) {
@@ -75,6 +84,7 @@ public class Initialiser {
     registerBlockItem("waxed_oxidized_copper_hopper", OXIDIZED_WAXED_COPPER_HOPPER_BLOCK);
     registerBlockItem("waxed_exposed_copper_hopper", EXPOSED_WAXED_COPPER_HOPPER_BLOCK);
     registerBlockEntityItem("logical_comparator", LOGICAL_COMPARATOR_BLOCK, LogicalComparatorBlockEntity::new);
+    registerBlockEntityItem("sculk_chamber", SCULK_CHAMBER_BLOCK, SculkChamberBlockEntity::new);
   }
 
   public static void initOxidizableChains() {
@@ -90,6 +100,7 @@ public class Initialiser {
   public static void initCreativePlacement() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
       content.addAfter(Items.COMPARATOR, LOGICAL_COMPARATOR_BLOCK);
+      content.addAfter(LOGICAL_COMPARATOR_BLOCK, SCULK_CHAMBER_BLOCK);
       content.addAfter(Items.HOPPER, UNAFFECTED_COPPER_HOPPER_BLOCK);
       content.addAfter(UNAFFECTED_COPPER_HOPPER_BLOCK, UNAFFECTED_WAXED_COPPER_HOPPER_BLOCK);
       content.addAfter(UNAFFECTED_WAXED_COPPER_HOPPER_BLOCK, EXPOSED_COPPER_HOPPER_BLOCK);
