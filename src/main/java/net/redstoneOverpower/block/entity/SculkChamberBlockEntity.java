@@ -115,10 +115,16 @@ public class SculkChamberBlockEntity extends BlockEntity implements GameEventLis
 
         // Decides if the block can accept a sound
         public boolean accepts(ServerWorld world, BlockPos pos, GameEvent event, @Nullable GameEvent.Emitter emitter) {
-            return (!pos.equals(this.pos)
-                || event != GameEvent.BLOCK_DESTROY
-                && event != GameEvent.BLOCK_PLACE)
-                && SculkChamberBlock.canStoreSound(SculkChamberBlockEntity.this.getCachedState());
+            BlockState blockState = SculkChamberBlockEntity.this.getCachedState();
+
+            if (blockState.getBlock() instanceof SculkChamberBlock) {
+                return (!pos.equals(this.pos)
+                    || event != GameEvent.BLOCK_DESTROY
+                    && event != GameEvent.BLOCK_PLACE)
+                    && SculkChamberBlock.canStoreSound(blockState);
+            }
+
+            return !pos.equals(this.pos) || event != GameEvent.BLOCK_DESTROY && event != GameEvent.BLOCK_PLACE;
         }
 
         public void accept(ServerWorld world, BlockPos pos, GameEvent event, @Nullable Entity sourceEntity, @Nullable Entity entity, float distance) {

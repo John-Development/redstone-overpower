@@ -5,14 +5,12 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -104,7 +102,7 @@ public class SculkChamberBlock extends BlockWithEntity {
             }
             SculkChamberBlock.updateNeighbors(world, pos, state);
             world.emitGameEvent(
-                Registries.GAME_EVENT.get(new Identifier("minecraft", "resonate_" + sculkChamberBlockEntity.getLastVibrationFrequency())),
+                Vibrations.getResonation(sculkChamberBlockEntity.getLastVibrationFrequency()),
                 pos,
                 GameEvent.Emitter.of(state)
             );
