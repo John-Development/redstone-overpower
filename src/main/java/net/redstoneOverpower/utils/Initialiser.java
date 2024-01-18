@@ -32,7 +32,7 @@ public class Initialiser {
 
   public static final LogicalComparatorBlock LOGICAL_COMPARATOR_BLOCK = new LogicalComparatorBlock(FabricBlockSettings.copyOf(Blocks.COMPARATOR));
   public static final SculkChamberBlock SCULK_CHAMBER_BLOCK = new SculkChamberBlock(FabricBlockSettings.create().strength(1.0f));
-  public static final SculkNoteBlock SCULK_NOTE_BLOCK = new SculkNoteBlock(FabricBlockSettings.create().strength(1.0f));
+  public static final SculkNoteBlock SCULK_NOTE_BLOCK = new SculkNoteBlock(FabricBlockSettings.copyOf(Blocks.NOTE_BLOCK));
 
   public static BlockEntityType<CopperHopperBlockEntity> COPPER_HOPPER_BLOCK_ENTITY = Registry.register(
     Registries.BLOCK_ENTITY_TYPE,

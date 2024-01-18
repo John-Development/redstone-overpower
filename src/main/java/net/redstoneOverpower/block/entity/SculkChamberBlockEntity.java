@@ -92,7 +92,7 @@ public class SculkChamberBlockEntity extends BlockEntity implements GameEventLis
     }
 
     protected class VibrationCallback implements Vibrations.Callback {
-        public static final int RANGE = 8;
+        public static final int RANGE = 16;
         protected final BlockPos pos;
         private final PositionSource positionSource;
 
