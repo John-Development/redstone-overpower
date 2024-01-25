@@ -1,6 +1,9 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "redstoneoverpower:block/sculk_note_block"
+    "top": "block/note_block",
+    "side": "redstoneoverpower:block/sculk_note_block",
+    "bottom": "block/sculk_sensor_bottom",
+    "particle": "block/sculk_catalyst_side"
   }
 }
