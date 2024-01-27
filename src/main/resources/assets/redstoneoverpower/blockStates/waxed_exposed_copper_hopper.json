@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "redstoneoverpower:block/exposed_copper_hopper"
+    },
+    "facing=east": {
+      "model": "redstoneoverpower:block/exposed_copper_hopper_side",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "redstoneoverpower:block/exposed_copper_hopper_side"
+    },
+    "facing=south": {
+      "model": "redstoneoverpower:block/exposed_copper_hopper_side",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "redstoneoverpower:block/exposed_copper_hopper_side",
+      "y": 270
+    }
+  }
+}
+

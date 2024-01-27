@@ -1,10 +1,10 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "redstoneoverpower:block/copper_hopper_outside",
-    "top": "redstoneoverpower:block/copper_hopper_top",
-    "side": "redstoneoverpower:block/copper_hopper_outside",
-    "inside": "redstoneoverpower:block/copper_hopper_inside"
+    "particle": "redstoneoverpower:block/exposed_copper_hopper_outside",
+    "top": "redstoneoverpower:block/exposed_copper_hopper_top",
+    "side": "redstoneoverpower:block/exposed_copper_hopper_outside",
+    "inside": "redstoneoverpower:block/exposed_copper_hopper_inside"
   },
   "elements": [
     {   "from": [ 0, 10, 0 ],

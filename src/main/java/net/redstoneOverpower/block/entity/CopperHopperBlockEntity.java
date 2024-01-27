@@ -11,6 +11,7 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.screen.HopperScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
@@ -21,7 +22,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
 import net.redstoneOverpower.block.CopperHopperBlock;
-import net.redstoneOverpower.block.screen.CopperHopperScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -33,8 +33,8 @@ import static net.redstoneOverpower.utils.Initialiser.COPPER_HOPPER_BLOCK_ENTITY
 
 public class CopperHopperBlockEntity extends LootableContainerBlockEntity implements Hopper {
     public static final int TRANSFER_COOLDOWN = 8;
-    public static final int INVENTORY_SIZE = 4;
-    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
+    public static final int INVENTORY_SIZE = 5;
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
     private int transferCooldown = -1;
     private long lastTickTime;
 
@@ -74,6 +74,7 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
 
     @Override
     public void setStack(int slot, ItemStack stack) {
+      System.out.println("setStack");
       this.checkLootInteraction(null);
       this.getInvStackList().set(slot, stack);
       if (stack.getCount() > this.getMaxCountPerStack()) {
@@ -108,7 +109,7 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
           bl |= booleanSupplier.getAsBoolean();
         }
         if (bl) {
-          blockEntity.setTransferCooldown(8);
+          blockEntity.setTransferCooldown(TRANSFER_COOLDOWN);
           CopperHopperBlockEntity.markDirty(world, pos, state);
           return true;
         }
@@ -125,6 +126,7 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
     }
 
     private static boolean insert(World world, BlockPos pos, BlockState state, Inventory inventory) {
+//      System.out.println("insert");
       Inventory inventory2 = CopperHopperBlockEntity.getOutputInventory(world, pos, state);
       if (inventory2 == null) {
         return false;
@@ -134,7 +136,9 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
         return false;
       }
       for (int i = 0; i < inventory.size(); ++i) {
+        System.out.println(inventory.getStack(i).isEmpty());
         if (inventory.getStack(i).isEmpty()) continue;
+        System.out.println("pasa");
         ItemStack itemStack = inventory.getStack(i).copy();
         ItemStack itemStack2 = CopperHopperBlockEntity.transfer(inventory, inventory2, inventory.removeStack(i, 1), direction);
         if (itemStack2.isEmpty()) {
@@ -165,6 +169,7 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
     }
 
     public static boolean extract(World world, Hopper hopper) {
+//      System.out.println("extract main");
       Inventory inventory = CopperHopperBlockEntity.getInputInventory(world, hopper);
       if (inventory != null) {
         Direction direction = Direction.DOWN;
@@ -181,6 +186,7 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
     }
 
     private static boolean extract(Hopper hopper, Inventory inventory, int slot, Direction side) {
+      System.out.println("extract 1");
       ItemStack itemStack = inventory.getStack(slot);
       if (!itemStack.isEmpty() && CopperHopperBlockEntity.canExtract(hopper, inventory, itemStack, slot, side)) {
         ItemStack itemStack2 = itemStack.copy();
@@ -195,6 +201,7 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
     }
 
     public static boolean extract(Inventory inventory, ItemEntity itemEntity) {
+      System.out.println("extract 2");
       boolean bl = false;
       ItemStack itemStack = itemEntity.getStack().copy();
       ItemStack itemStack2 = CopperHopperBlockEntity.transfer(null, inventory, itemStack, null);
@@ -213,7 +220,9 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
      * Lifted jumps to return sites
      */
     public static ItemStack transfer(@Nullable Inventory from, Inventory to, ItemStack stack, @Nullable Direction side) {
+      System.out.println("transfer main");
       if (to instanceof SidedInventory sidedInventory) {
+        System.out.println("transfer main sided");
         if (side != null) {
           int[] is = sidedInventory.getAvailableSlots(side);
           int i = 0;
@@ -237,6 +246,9 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
 
     private static boolean canInsert(Inventory inventory, ItemStack stack, int slot, @Nullable Direction side) {
       SidedInventory sidedInventory;
+      if (slot < INVENTORY_SIZE - 1 && !inventory.getStack(slot + 1).isEmpty()) {
+        return false;
+      }
       if (!inventory.isValid(slot, stack)) {
         return false;
       }
@@ -251,8 +263,11 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
       return !(fromInventory instanceof SidedInventory) || (sidedInventory = (SidedInventory)fromInventory).canExtract(slot, stack, facing);
     }
 
+    // Must make sure that is the last slot available, if next slot is not available CANNOT insert there
     private static ItemStack transfer(@Nullable Inventory from, Inventory to, ItemStack stack, int slot, @Nullable Direction side) {
+      System.out.println("transfer 1");
       ItemStack itemStack = to.getStack(slot);
+
       if (CopperHopperBlockEntity.canInsert(to, stack, slot, side)) {
         int j;
         boolean bl = false;
@@ -277,7 +292,7 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
                 j = 1;
               }
             }
-            hopperBlockEntity.setTransferCooldown(8 - j);
+            hopperBlockEntity.setTransferCooldown(TRANSFER_COOLDOWN - j);
           }
           to.markDirty();
         }
@@ -352,7 +367,7 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
     }
 
     private boolean isDisabled() {
-      return this.transferCooldown > 8;
+      return this.transferCooldown > TRANSFER_COOLDOWN;
     }
 
     @Override
@@ -374,6 +389,6 @@ public class CopperHopperBlockEntity extends LootableContainerBlockEntity implem
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-      return new CopperHopperScreenHandler(syncId, playerInventory, this);
+      return new HopperScreenHandler(syncId, playerInventory, this);
     }
 }

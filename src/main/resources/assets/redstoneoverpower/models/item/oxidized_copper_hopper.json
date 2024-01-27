@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "redstoneoverpower:item/copper_hopper"
+    "layer0": "redstoneoverpower:item/oxidized_copper_hopper"
   }
 }
