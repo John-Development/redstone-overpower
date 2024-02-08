@@ -3,14 +3,6 @@
 	"block.redstoneoverpower.sculk_chamber": "Sculk chamber",
 	"block.redstoneoverpower.sculk_note_block": "Sculk note block",
 	"block.redstoneoverpower.sculk_pulser": "Sculk pulser",
-	"block.redstoneoverpower.copper_hopper": "Copper hoppper",
-	"block.redstoneoverpower.waxed_copper_hopper": "Waxed copper hoppper",
-	"block.redstoneoverpower.exposed_copper_hopper": "Exposed copper hoppper",
-	"block.redstoneoverpower.waxed_exposed_copper_hopper": "Waxed exposed copper hoppper",
-	"block.redstoneoverpower.weathered_copper_hopper": "Weathered copper hoppper",
-	"block.redstoneoverpower.waxed_weathered_copper_hopper": "Waxed weathered copper hoppper",
-	"block.redstoneoverpower.oxidized_copper_hopper": "Oxidized copper hoppper",
-	"block.redstoneoverpower.waxed_oxidized_copper_hopper": "Waxed oxidized copper hoppper",
 	"block.redstoneoverpower.duct": "Duct",
 	"container.redstoneoverpower.duct": "Duct item"
 }

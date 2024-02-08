@@ -21,14 +21,12 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.redstoneOverpower.block.entity.CopperHopperBlockEntity;
 import net.redstoneOverpower.block.entity.DuctBlockEntity;
 import net.redstoneOverpower.block.enums.PipeType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-import static net.redstoneOverpower.utils.CopperHopperVariants.UNAFFECTED_COPPER_HOPPER_BLOCK;
 import static net.redstoneOverpower.utils.Initialiser.*;
 
 public class DuctBlock extends BlockWithEntity implements Waterloggable {
@@ -174,11 +172,6 @@ public class DuctBlock extends BlockWithEntity implements Waterloggable {
                 return side.getAxis() == Direction.Axis.Y ? PipeType.IN : PipeType.IN_HOPPER;
             }
         }
-        if (world.getBlockEntity(neighborPos) instanceof CopperHopperBlockEntity copperHopperBlockEntity) {
-            if (copperHopperBlockEntity.getCachedState().get(CopperHopperBlock.FACING).equals(side.getOpposite())) {
-                return side.getAxis() == Direction.Axis.Y ? PipeType.IN : PipeType.IN_HOPPER;
-            }
-        }
 
         return DuctBlockEntity.getInventoryAt(world, neighborPos) != null ? PipeType.OUT : PipeType.NONE;
     }
@@ -214,9 +207,6 @@ public class DuctBlock extends BlockWithEntity implements Waterloggable {
             return state.with(FACING_PROPERTIES.get(direction), PipeType.NONE);
         }
         if (neighborState.isOf(Blocks.HOPPER) && neighborState.get(HopperBlock.FACING).equals(direction.getOpposite())) {
-            return state.with(FACING_PROPERTIES.get(direction), direction.getAxis() == Direction.Axis.Y ? PipeType.IN : PipeType.IN_HOPPER);
-        }
-        if (neighborState.isOf(UNAFFECTED_COPPER_HOPPER_BLOCK) && neighborState.get(CopperHopperBlock.FACING).equals(direction.getOpposite())) {
             return state.with(FACING_PROPERTIES.get(direction), direction.getAxis() == Direction.Axis.Y ? PipeType.IN : PipeType.IN_HOPPER);
         }
 

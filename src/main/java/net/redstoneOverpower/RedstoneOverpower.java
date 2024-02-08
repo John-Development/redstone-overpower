@@ -18,6 +18,5 @@ public class RedstoneOverpower implements ModInitializer {
 
 		initBlockItems();
 		initCreativePlacement();
-		initOxidizableChains();
 	}
 }
