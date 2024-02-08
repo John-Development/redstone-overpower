@@ -16,18 +16,18 @@ public class CopperHopperScreenHandler extends ScreenHandler {
   private final Inventory inventory;
 
   public CopperHopperScreenHandler(int syncId, PlayerInventory playerInventory) {
-    this(syncId, playerInventory, new SimpleInventory(4));
+    this(syncId, playerInventory, new SimpleInventory(SLOT_COUNT));
   }
 
   public CopperHopperScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
     super(COPPER_HOPPER_SCREEN_HANDLER, syncId);
     int j;
     this.inventory = inventory;
-    CopperHopperScreenHandler.checkSize(inventory, 4);
+    CopperHopperScreenHandler.checkSize(inventory, SLOT_COUNT);
     inventory.onOpen(playerInventory.player);
 
     // Hopper inventory
-    for (j = 0; j < 4; ++j) {
+    for (j = 0; j < SLOT_COUNT; ++j) {
       this.addSlot(new Slot(inventory, j, 44 + 9 + j * 18, 20));
     }
     // Player inventory
