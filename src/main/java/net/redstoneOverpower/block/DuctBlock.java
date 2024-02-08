@@ -2,7 +2,9 @@ package net.redstoneOverpower.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.block.HopperBlock;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -30,6 +32,7 @@ import static net.redstoneOverpower.utils.CopperHopperVariants.UNAFFECTED_COPPER
 import static net.redstoneOverpower.utils.Initialiser.*;
 
 public class DuctBlock extends BlockWithEntity implements Waterloggable {
+    public static final MapCodec<DuctBlock> CODEC = createCodec(DuctBlock::new);
     public static final BooleanProperty ENABLED;
     public static final EnumProperty<PipeType> NORTH;
     public static final EnumProperty<PipeType> EAST;
@@ -58,6 +61,11 @@ public class DuctBlock extends BlockWithEntity implements Waterloggable {
             .with(DOWN, PipeType.NONE)
             .with(FACING, Direction.NORTH)
         );
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     private VoxelShape[] generateFacingsToShapeMap() {

@@ -1,5 +1,6 @@
 package net.redstoneOverpower.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -18,6 +19,8 @@ import net.redstoneOverpower.block.entity.LogicalComparatorBlockEntity;
 import net.redstoneOverpower.block.enums.LogicalComparatorMode;
 
 public class LogicalComparatorBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
+    public static final MapCodec<LogicalComparatorBlock> CODEC = createCodec(LogicalComparatorBlock::new);
+
     public static final EnumProperty<LogicalComparatorMode> MODE;
 
     public LogicalComparatorBlock(Settings settings) {
@@ -27,6 +30,11 @@ public class LogicalComparatorBlock extends AbstractRedstoneGateBlock implements
             .with(POWERED, false)
             .with(MODE, LogicalComparatorMode.AND)
         );
+    }
+
+    @Override
+    protected MapCodec<? extends AbstractRedstoneGateBlock> getCodec() {
+        return CODEC;
     }
 
     @Override

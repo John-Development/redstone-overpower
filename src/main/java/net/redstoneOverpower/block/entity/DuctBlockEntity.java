@@ -56,7 +56,7 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
   public void readNbt(NbtCompound nbt) {
     super.readNbt(nbt);
     this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-    if (!this.deserializeLootTable(nbt)) {
+    if (!this.readLootTable(nbt)) {
       Inventories.readNbt(nbt, this.inventory);
     }
     this.transferCooldown = nbt.getInt("TransferCooldown");
@@ -65,7 +65,7 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
   @Override
   protected void writeNbt(NbtCompound nbt) {
     super.writeNbt(nbt);
-    if (!this.serializeLootTable(nbt)) {
+    if (!this.writeLootTable(nbt)) {
       Inventories.writeNbt(nbt, this.inventory);
     }
     nbt.putInt("TransferCooldown", this.transferCooldown);
@@ -78,14 +78,14 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
 
   @Override
   public ItemStack removeStack(int slot, int amount) {
-    this.checkLootInteraction(null);
-    return Inventories.splitStack(this.getInvStackList(), slot, amount);
+    this.generateLoot(null);
+    return Inventories.splitStack(this.method_11282(), slot, amount);
   }
 
   @Override
   public void setStack(int slot, ItemStack stack) {
-    this.checkLootInteraction(null);
-    this.getInvStackList().set(slot, stack);
+    this.generateLoot(null);
+    this.method_11282().set(slot, stack);
     if (stack.getCount() > this.getMaxCountPerStack()) {
       stack.setCount(this.getMaxCountPerStack());
     }
@@ -130,7 +130,7 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
   }
 
   @Override
-  protected DefaultedList<ItemStack> getInvStackList() {
+  protected DefaultedList<ItemStack> method_11282() {
     return this.inventory;
   }
 

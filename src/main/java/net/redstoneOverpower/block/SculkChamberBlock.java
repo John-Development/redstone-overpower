@@ -1,5 +1,6 @@
 package net.redstoneOverpower.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -25,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import static net.redstoneOverpower.utils.Initialiser.SCULK_CHAMBER_BLOCK_ENTITY;
 
 public class SculkChamberBlock extends BlockWithEntity {
+    public static final MapCodec<SculkChamberBlock> CODEC = createCodec(SculkChamberBlock::new);
     public static final EnumProperty<SculkChamberMode> MODE;
 
     private static final float[] RESONATION_NOTE_PITCHES = Util.make(new float[16], frequency -> {
@@ -39,6 +41,11 @@ public class SculkChamberBlock extends BlockWithEntity {
         this.setDefaultState(this.stateManager.getDefaultState()
             .with(MODE, SculkChamberMode.LISTEN)
         );
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Override
