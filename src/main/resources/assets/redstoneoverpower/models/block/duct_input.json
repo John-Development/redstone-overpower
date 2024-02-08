@@ -1,0 +1,8 @@
+{
+	"parent": "redstoneoverpower:block/duct_connection",
+	"texture_size": [32, 32],
+	"textures": {
+		"all": "redstoneoverpower:block/duct_input",
+		"particle": "redstoneoverpower:block/duct_input"
+	}
+}

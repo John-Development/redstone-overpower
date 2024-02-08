@@ -5,13 +5,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
-import static net.redstoneOverpower.utils.Initialiser.LOGICAL_COMPARATOR_ENTITY;
+import static net.redstoneOverpower.utils.Initialiser.LOGICAL_COMPARATOR_BLOCK_ENTITY;
 
 public class LogicalComparatorBlockEntity extends BlockEntity {
     private int outputSignal;
 
     public LogicalComparatorBlockEntity(BlockPos pos, BlockState state) {
-        super(LOGICAL_COMPARATOR_ENTITY, pos, state);
+        super(LOGICAL_COMPARATOR_BLOCK_ENTITY, pos, state);
     }
 
     protected void writeNbt(NbtCompound nbt) {

@@ -10,5 +10,7 @@
     "block.redstoneoverpower.weathered_copper_hopper": "Tolva de cobre degradada",
     "block.redstoneoverpower.waxed_weathered_copper_hopper": "Tolva de cobre degradada encerada",
     "block.redstoneoverpower.oxidized_copper_hopper": "Tolva de cobre oxidada",
-    "block.redstoneoverpower.waxed_oxidized_copper_hopper": "Tolva de cobre oxidada encerada"
+    "block.redstoneoverpower.waxed_oxidized_copper_hopper": "Tolva de cobre oxidada encerada",
+    "block.redstoneoverpower.duct": "Ducto",
+    "container.redstoneoverpower.duct": "Ducto"
 }

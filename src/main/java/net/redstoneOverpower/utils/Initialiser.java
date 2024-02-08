@@ -17,14 +17,13 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
-import net.redstoneOverpower.block.LogicalComparatorBlock;
-import net.redstoneOverpower.block.SculkChamberBlock;
-import net.redstoneOverpower.block.SculkNoteBlock;
-import net.redstoneOverpower.block.SculkPulserBlock;
+import net.redstoneOverpower.block.*;
 import net.redstoneOverpower.block.entity.CopperHopperBlockEntity;
+import net.redstoneOverpower.block.entity.DuctBlockEntity;
 import net.redstoneOverpower.block.entity.LogicalComparatorBlockEntity;
 import net.redstoneOverpower.block.entity.SculkChamberBlockEntity;
 import net.redstoneOverpower.block.screen.CopperHopperScreenHandler;
+import net.redstoneOverpower.block.screen.DuctScreenHandler;
 
 import static net.redstoneOverpower.RedstoneOverpower.MOD_ID;
 import static net.redstoneOverpower.utils.CopperHopperVariants.*;
@@ -35,28 +34,21 @@ public class Initialiser {
   public static final SculkChamberBlock SCULK_CHAMBER_BLOCK = new SculkChamberBlock(FabricBlockSettings.create().strength(1.0f));
   public static final SculkNoteBlock SCULK_NOTE_BLOCK = new SculkNoteBlock(FabricBlockSettings.copyOf(Blocks.NOTE_BLOCK));
   public static final SculkPulserBlock SCULK_PULSER_BLOCK = new SculkPulserBlock(FabricBlockSettings.create().strength(1.0f));
+  public static final DuctBlock DUCT_BLOCK = new DuctBlock(FabricBlockSettings.create().strength(1.0f));
 
-  public static BlockEntityType<CopperHopperBlockEntity> COPPER_HOPPER_BLOCK_ENTITY = Registry.register(
-    Registries.BLOCK_ENTITY_TYPE,
-    new Identifier(MOD_ID, "copper_hopper"),
-    FabricBlockEntityTypeBuilder.create(CopperHopperBlockEntity::new, UNAFFECTED_COPPER_HOPPER_BLOCK).build()
-  );
-
-  public static final BlockEntityType<LogicalComparatorBlockEntity> LOGICAL_COMPARATOR_ENTITY = Registry.register(
-    Registries.BLOCK_ENTITY_TYPE,
-    new Identifier(MOD_ID, "logical_comparator_block_entity"),
-    FabricBlockEntityTypeBuilder.create(LogicalComparatorBlockEntity::new, LOGICAL_COMPARATOR_BLOCK).build()
-  );
-
-  public static final BlockEntityType<SculkChamberBlockEntity> SCULK_CHAMBER_BLOCK_ENTITY = Registry.register(
-    Registries.BLOCK_ENTITY_TYPE,
-    new Identifier(MOD_ID, "sculk_chamber_block_entity"),
-    FabricBlockEntityTypeBuilder.create(SculkChamberBlockEntity::new, SCULK_CHAMBER_BLOCK).build()
-  );
+  public static BlockEntityType<CopperHopperBlockEntity> COPPER_HOPPER_BLOCK_ENTITY;
+  public static BlockEntityType<LogicalComparatorBlockEntity> LOGICAL_COMPARATOR_BLOCK_ENTITY;
+  public static BlockEntityType<SculkChamberBlockEntity> SCULK_CHAMBER_BLOCK_ENTITY;
+  public static BlockEntityType<DuctBlockEntity> DUCT_BLOCK_ENTITY;
 
   public static final ScreenHandlerType<CopperHopperScreenHandler> COPPER_HOPPER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(
     new Identifier(MOD_ID, "copper_hopper"),
     CopperHopperScreenHandler::new
+  );
+
+  public static final ScreenHandlerType<DuctScreenHandler> DUCT_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(
+    new Identifier(MOD_ID, "duct"),
+    DuctScreenHandler::new
   );
 
   private static void registerBlockItem(String path, Block block) {
@@ -79,7 +71,12 @@ public class Initialiser {
   }
 
   public static void initBlockItems() {
-    registerBlockItem("copper_hopper", UNAFFECTED_COPPER_HOPPER_BLOCK);
+    // Blocks
+    registerBlockItem("sculk_note_block", SCULK_NOTE_BLOCK);
+    registerBlockItem("sculk_pulser", SCULK_PULSER_BLOCK);
+
+    // Block entities
+    COPPER_HOPPER_BLOCK_ENTITY = (BlockEntityType<CopperHopperBlockEntity>) registerBlockEntityItem("copper_hopper", UNAFFECTED_COPPER_HOPPER_BLOCK, CopperHopperBlockEntity::new);
     registerBlockItem("weathered_copper_hopper", WEATHERED_COPPER_HOPPER_BLOCK);
     registerBlockItem("oxidized_copper_hopper", OXIDIZED_COPPER_HOPPER_BLOCK);
     registerBlockItem("exposed_copper_hopper", EXPOSED_COPPER_HOPPER_BLOCK);
@@ -87,10 +84,9 @@ public class Initialiser {
     registerBlockItem("waxed_weathered_copper_hopper", WEATHERED_WAXED_COPPER_HOPPER_BLOCK);
     registerBlockItem("waxed_oxidized_copper_hopper", OXIDIZED_WAXED_COPPER_HOPPER_BLOCK);
     registerBlockItem("waxed_exposed_copper_hopper", EXPOSED_WAXED_COPPER_HOPPER_BLOCK);
-    registerBlockEntityItem("logical_comparator", LOGICAL_COMPARATOR_BLOCK, LogicalComparatorBlockEntity::new);
-    registerBlockEntityItem("sculk_chamber", SCULK_CHAMBER_BLOCK, SculkChamberBlockEntity::new);
-    registerBlockItem("sculk_note_block", SCULK_NOTE_BLOCK);
-    registerBlockItem("sculk_pulser", SCULK_PULSER_BLOCK);
+    LOGICAL_COMPARATOR_BLOCK_ENTITY = (BlockEntityType<LogicalComparatorBlockEntity>) registerBlockEntityItem("logical_comparator", LOGICAL_COMPARATOR_BLOCK, LogicalComparatorBlockEntity::new);
+    SCULK_CHAMBER_BLOCK_ENTITY = (BlockEntityType<SculkChamberBlockEntity>) registerBlockEntityItem("sculk_chamber", SCULK_CHAMBER_BLOCK, SculkChamberBlockEntity::new);
+    DUCT_BLOCK_ENTITY = (BlockEntityType<DuctBlockEntity>) registerBlockEntityItem("duct", DUCT_BLOCK, DuctBlockEntity::new);
   }
 
   public static void initOxidizableChains() {

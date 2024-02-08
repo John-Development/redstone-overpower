@@ -58,9 +58,8 @@ public class CopperHopperBlock extends HopperBlock implements Oxidizable {
 
   @Override
   public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-    BlockEntity blockEntity;
-    if (itemStack.hasCustomName() && (blockEntity = world.getBlockEntity(pos)) instanceof CopperHopperBlockEntity) {
-      ((CopperHopperBlockEntity)blockEntity).setCustomName(itemStack.getName());
+    if (itemStack.hasCustomName() && world.getBlockEntity(pos) instanceof CopperHopperBlockEntity copperHopperBlockEntity) {
+      copperHopperBlockEntity.setCustomName(itemStack.getName());
     }
   }
 
@@ -69,9 +68,8 @@ public class CopperHopperBlock extends HopperBlock implements Oxidizable {
     if (world.isClient) {
       return ActionResult.SUCCESS;
     }
-    BlockEntity blockEntity = world.getBlockEntity(pos);
-    if (blockEntity instanceof CopperHopperBlockEntity) {
-      player.openHandledScreen((CopperHopperBlockEntity)blockEntity);
+    if (world.getBlockEntity(pos) instanceof CopperHopperBlockEntity copperHopperBlockEntity) {
+      player.openHandledScreen(copperHopperBlockEntity);
       player.incrementStat(Stats.INSPECT_HOPPER);
     }
     return ActionResult.CONSUME;

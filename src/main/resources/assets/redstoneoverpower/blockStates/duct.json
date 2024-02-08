@@ -1,0 +1,179 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct"
+      },
+      "when": {
+        "enabled": true
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_on"
+      },
+      "when": {
+        "enabled": false
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input"
+      },
+      "when": {
+        "north": "input"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input_hopper"
+      },
+      "when": {
+        "north": "input_hopper"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_output"
+      },
+      "when": {
+        "north": "output"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input",
+        "y": 90
+      },
+      "when": {
+        "east": "input"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input_hopper",
+        "y": 90
+      },
+      "when": {
+        "east": "input_hopper"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_output",
+        "y": 90
+      },
+      "when": {
+        "east": "output"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input",
+        "y": 180
+      },
+      "when": {
+        "south": "input"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input_hopper",
+        "y": 180
+      },
+      "when": {
+        "south": "input_hopper"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_output",
+        "y": 180
+      },
+      "when": {
+        "south": "output"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input",
+        "y": 270
+      },
+      "when": {
+        "west": "input"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input_hopper",
+        "y": 270
+      },
+      "when": {
+        "west": "input_hopper"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_output",
+        "y": 270
+      },
+      "when": {
+        "west": "output"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input",
+        "x": -90
+      },
+      "when": {
+        "up": "input"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input_hopper",
+        "x": -90
+      },
+      "when": {
+        "up": "input_hopper"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_output",
+        "x": -90
+      },
+      "when": {
+        "up": "output"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input",
+        "x": 90
+      },
+      "when": {
+        "down": "input"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_input_hopper",
+        "x": 90
+      },
+      "when": {
+        "down": "input_hopper"
+      }
+    },
+    {
+      "apply": {
+        "model": "redstoneoverpower:block/duct_output",
+        "x": 90
+      },
+      "when": {
+        "down": "output"
+      }
+    }
+  ]
+}
