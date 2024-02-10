@@ -15,6 +15,7 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
@@ -35,6 +36,8 @@ import static net.redstoneOverpower.utils.Initialiser.DUCT_BLOCK_ENTITY;
 public class DuctBlockEntity extends LootableContainerBlockEntity {
   public static final int TRANSFER_COOLDOWN = 8;
   public static final int INVENTORY_SIZE = 1;
+  public static final int FILTER_ENABLED = 1;
+  public static final int FILTER_DISABLED = 0;
   public static final ArrayList<Direction> TRANSFER_PRIORITY = new ArrayList<>(Arrays.asList(
     Direction.DOWN,
     Direction.NORTH,
@@ -45,12 +48,40 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
   ));
 
   private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-    private int transferCooldown = -1;
-    private long lastTickTime;
+  private int transferCooldown = -1;
+  private long lastTickTime;
+  protected final PropertyDelegate propertyDelegate;
+  protected int slotState;
 
-    public DuctBlockEntity(BlockPos pos, BlockState state) {
-      super(DUCT_BLOCK_ENTITY, pos, state);
-    }
+  public DuctBlockEntity(BlockPos pos, BlockState state) {
+    super(DUCT_BLOCK_ENTITY, pos, state);
+
+    this.slotState = FILTER_DISABLED;
+    this.propertyDelegate = new PropertyDelegate() {
+      public int get(int index) {
+        return index == 0 ? slotState : FILTER_DISABLED;
+      }
+
+      public void set(int index, int value) {
+        if (index == 0) {
+          slotState = value;
+        }
+      }
+
+      public int size() {
+        return INVENTORY_SIZE;
+      }
+    };
+  }
+
+  private void setSlotState (int value) {
+    this.slotState = value;
+  }
+
+  @Override
+  protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+    return new DuctScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+  }
 
   @Override
   public void readNbt(NbtCompound nbt) {
@@ -60,6 +91,7 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
       Inventories.readNbt(nbt, this.inventory);
     }
     this.transferCooldown = nbt.getInt("TransferCooldown");
+    this.setSlotState(nbt.getInt("slot_state"));
   }
 
   @Override
@@ -69,6 +101,7 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
       Inventories.writeNbt(nbt, this.inventory);
     }
     nbt.putInt("TransferCooldown", this.transferCooldown);
+    nbt.putInt("slot_state", this.slotState);
   }
 
   @Override
@@ -139,17 +172,14 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
     this.inventory = list;
   }
 
-  @Override
-  protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-    return new DuctScreenHandler(syncId, playerInventory, this);
-  }
-
-  private static boolean insertMain(World world, BlockPos pos, BlockState state, DuctBlockEntity blockEntity) {
+  private static void insertMain(World world, BlockPos pos, BlockState state, DuctBlockEntity blockEntity) {
     if (world.isClient) {
-      return false;
+      return;
     }
 
-    if (!blockEntity.needsCooldown() && state.get(DuctBlock.ENABLED)) {
+    boolean canMoveItem = (blockEntity.slotState == FILTER_ENABLED && blockEntity.inventory.get(0).getCount() > 1) || blockEntity.slotState == FILTER_DISABLED;
+
+    if (!blockEntity.needsCooldown() && state.get(DuctBlock.ENABLED) && canMoveItem) {
       boolean bl = false;
       if (!blockEntity.isEmpty()) {
         bl = DuctBlockEntity.insert(world, pos, state, blockEntity);
@@ -158,20 +188,14 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
         blockEntity.setTransferCooldown(TRANSFER_COOLDOWN);
         DuctBlockEntity.markDirty(world, pos, state);
 
-        return true;
       }
     }
-    return false;
   }
 
   private static boolean insert(World world, BlockPos pos, BlockState state, Inventory inventory) {
-    Iterator<Direction> transferPriority = TRANSFER_PRIORITY.iterator();
-
-    while (transferPriority.hasNext()) {
-      Direction direction = transferPriority.next();
-
+    for (Direction direction : TRANSFER_PRIORITY) {
       if (state.get(DuctBlock.FACING_PROPERTIES.get(direction)) != PipeType.OUT) {
-        continue;
+          continue;
       }
 
       Inventory inventory2 = DuctBlockEntity.getInventoryAt(world, pos.offset(direction));

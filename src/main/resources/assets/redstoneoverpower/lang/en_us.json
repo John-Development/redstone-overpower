@@ -4,5 +4,7 @@
 	"block.redstoneoverpower.sculk_note_block": "Sculk note block",
 	"block.redstoneoverpower.sculk_pulser": "Sculk pulser",
 	"block.redstoneoverpower.duct": "Duct",
-	"container.redstoneoverpower.duct": "Duct item"
+	"container.redstoneoverpower.duct": "Duct item",
+	"gui.enable_filter": "Click to enable filter mode",
+	"gui.disable_filter": "Click to disable filter mode"
 }

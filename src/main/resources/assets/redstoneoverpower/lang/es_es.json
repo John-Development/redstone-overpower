@@ -4,5 +4,7 @@
     "block.redstoneoverpower.sculk_note_block": "Bloque musical de sculk",
     "block.redstoneoverpower.sculk_pulser": "Pulsador de sculk",
     "block.redstoneoverpower.duct": "Ducto",
-    "container.redstoneoverpower.duct": "Ducto"
+    "container.redstoneoverpower.duct": "Ducto",
+    "gui.enable_filter": "Pulsa para activar modo filtro",
+    "gui.disable_filter": "Pulsa para desactivar modo filtro"
 }
