@@ -50,7 +50,7 @@ public class SculkChamberBlock extends BlockWithEntity {
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
@@ -118,6 +118,13 @@ public class SculkChamberBlock extends BlockWithEntity {
 
     public static void setCooldown(World world, BlockPos pos, BlockState state) {
         world.setBlockState(pos, state.with(MODE, SculkChamberMode.COOLDOWN), Block.NOTIFY_ALL);
+        if (world.getBlockEntity(pos) instanceof SculkChamberBlockEntity sculkChamberBlockEntity) {
+            sculkChamberBlockEntity.triggerAnim("sculk_chamber", "open");
+        }
+//        world.setBlockState(pos, state.with(MODE, SculkChamberMode.COOLDOWN_ANIM), Block.NOTIFY_ALL);
+//        world.setBlockState(pos, state.with(MODE, SculkChamberMode.COOLDOWN).with(SHOULD_ANIMATE, true), Block.NOTIFY_ALL);
+//        world.setBlockState(pos, state.with(SHOULD_ANIMATE, true), Block.NOTIFY_ALL);
+        System.out.println("SE PIDE ANIMAR");
         world.scheduleBlockTick(pos, state.getBlock(), getCooldownTime());
         SculkChamberBlock.updateNeighbors(world, pos, state);
     }
@@ -142,6 +149,13 @@ public class SculkChamberBlock extends BlockWithEntity {
 
     public void setCharged(@Nullable Entity sourceEntity, World world, BlockPos pos, BlockState state, int frequency) {
         world.setBlockState(pos, state.with(MODE, SculkChamberMode.CHARGED), Block.NOTIFY_ALL);
+        if (world.getBlockEntity(pos) instanceof SculkChamberBlockEntity sculkChamberBlockEntity) {
+            sculkChamberBlockEntity.triggerAnim("sculk_chamber", "close");
+        }
+//        world.setBlockState(pos, state.with(MODE, SculkChamberMode.CHARGED_ANIM), Block.NOTIFY_ALL);
+//        world.setBlockState(pos, state.with(MODE, SculkChamberMode.CHARGED).with(SHOULD_ANIMATE, true), Block.NOTIFY_ALL);
+//        world.setBlockState(pos, state.with(SHOULD_ANIMATE, true), Block.NOTIFY_ALL);
+        System.out.println("SE PIDE ANIMAR");
         SculkChamberBlock.updateNeighbors(world, pos, state);
         SculkChamberBlock.tryResonate(sourceEntity, world, pos, frequency);
         world.emitGameEvent(sourceEntity, GameEvent.SCULK_SENSOR_TENDRILS_CLICKING, pos);

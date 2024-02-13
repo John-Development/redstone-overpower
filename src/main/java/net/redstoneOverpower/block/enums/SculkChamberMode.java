@@ -7,6 +7,8 @@ public enum SculkChamberMode implements StringIdentifiable {
     CHARGED("charged"),
     ISOLATED("isolated"),
     COOLDOWN("cooldown");
+//    COOLDOWN_ANIM("cooldown_anim"),
+//    CHARGED_ANIM("charged_anim");
 
     private final String name;
 

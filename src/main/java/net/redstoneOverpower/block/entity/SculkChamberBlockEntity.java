@@ -3,6 +3,7 @@ package net.redstoneOverpower.block.entity;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Dynamic;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -12,21 +13,32 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.event.BlockPositionSource;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
 import net.minecraft.world.event.Vibrations;
 import net.minecraft.world.event.listener.GameEventListener;
 import net.redstoneOverpower.block.SculkChamberBlock;
+import net.redstoneOverpower.block.enums.SculkChamberMode;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
+import software.bernie.geckolib.constant.DataTickets;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
+import software.bernie.geckolib.util.RenderUtils;
 
 import java.util.Objects;
 
 import static net.redstoneOverpower.utils.Initialiser.*;
 
-public class SculkChamberBlockEntity extends BlockEntity implements GameEventListener.Holder<Vibrations.VibrationListener>, Vibrations {
+public class SculkChamberBlockEntity extends BlockEntity implements GameEventListener.Holder<Vibrations.VibrationListener>, Vibrations, GeoBlockEntity {
     private static final Logger LOGGER = LogUtils.getLogger();
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private Vibrations.ListenerData listenerData;
     private final Vibrations.VibrationListener listener;
     private final Vibrations.Callback callback;
@@ -89,6 +101,131 @@ public class SculkChamberBlockEntity extends BlockEntity implements GameEventLis
 
     public void setLastVibrationFrequency(int lastVibrationFrequency) {
         this.lastVibrationFrequency = lastVibrationFrequency;
+    }
+
+//    @Nullable
+//    @Override
+//    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+//        // When state changes, notify listeners to allow data sync between server and rendering client
+//        // world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
+//        return BlockEntityUpdateS2CPacket.create(this);
+//    }
+//
+//    @Override
+//    public NbtCompound toInitialChunkDataNbt() {
+//        return createNbt();
+//    }
+
+    private static final RawAnimation OPEN_ANIM = RawAnimation.begin().thenPlayAndHold("open");//.thenLoop("permaopen");
+    private static final RawAnimation CLOSE_ANIM = RawAnimation.begin().thenPlayAndHold("close");//.thenLoop("permaclose");
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+//        controllers.add(new AnimationController<>(this, state => {));
+        controllers.add(new AnimationController<>(this, "sculk_chamber", this::predicate)
+            .triggerableAnim("open", OPEN_ANIM)
+            .triggerableAnim("close", CLOSE_ANIM));
+    }
+
+    private <T extends GeoAnimatable> PlayState open(AnimationState<T> animationState, World world, BlockPos pos, BlockState blockState) {
+//        world.setBlockState(pos, blockState.with(SculkChamberBlock.MODE, SculkChamberMode.COOLDOWN), Block.NOTIFY_ALL);
+        System.out.println("SE ANIMA");
+//        animationState.getController().setAnimation(RawAnimation.begin().then("open", Animation.LoopType.HOLD_ON_LAST_FRAME));
+
+        animationState.getController().triggerableAnim("open", OPEN_ANIM);
+
+        return animationState.setAndContinue(OPEN_ANIM);
+    }
+
+    private <T extends GeoAnimatable> PlayState close(AnimationState<T> animationState, World world, BlockPos pos, BlockState blockState) {
+//        world.setBlockState(pos, blockState.with(SculkChamberBlock.MODE, SculkChamberMode.CHARGED), Block.NOTIFY_ALL);
+        System.out.println("SE ANIMA");
+//        animationState.getController().setAnimation(RawAnimation.begin().then("close", Animation.LoopType.HOLD_ON_LAST_FRAME));
+
+        animationState.getController().triggerableAnim("close", CLOSE_ANIM);
+
+        return PlayState.CONTINUE;
+    }
+
+    private PlayState predicate(AnimationState<SculkChamberBlockEntity> animationState) {
+//        int isOpen = animationState.getData(DataTickets.ANIM_STATE);
+//
+//        System.out.println("anim state: " + isOpen);
+//        boolean isClosed = animationState.getData(DataTickets.CLOSED);
+
+        return PlayState.CONTINUE;
+
+//        BlockPos pos = animationState.getAnimatable().getPos();
+//        World world = animationState.getAnimatable().world;
+//
+//
+//        assert world != null;
+////        if (world.isClient) {
+////            System.out.println("CLIENTE");
+////        } else {
+////            System.out.println("SERVIDOR");
+////        }
+//
+//        BlockEntity blockEntity = world.getBlockEntity(pos);
+//        BlockState blockState = world.getBlockState(pos);
+//
+//        if (blockEntity instanceof SculkChamberBlockEntity) {
+//            boolean shouldOpen = blockState.get(SculkChamberBlock.MODE) == SculkChamberMode.COOLDOWN;
+//            boolean shouldClose = blockState.get(SculkChamberBlock.MODE) == SculkChamberMode.CHARGED;
+//
+//            if (shouldOpen) {
+//                return open(animationState, world, pos, blockState);
+//            }
+//            if (shouldClose) {
+//                return close(animationState, world, pos, blockState);
+//            }
+//        }
+//
+//        return PlayState.CONTINUE;
+    }
+//    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> geoAnimatableAnimationState) {
+//        BlockPos pos = this.getPos();
+//        assert world != null;
+//        BlockEntity blockEntity = world.getBlockEntity(pos);
+//        BlockState blockState = world.getBlockState(pos);
+//
+////        geoAnimatableAnimationState.getController().isPlayingTriggeredAnimation()
+//
+//
+//        if (blockEntity instanceof SculkChamberBlockEntity) {
+////            boolean shouldAnimate = blockState.get(SculkChamberBlock.SHOULD_ANIMATE);
+//            boolean shouldOpen = blockState.get(SculkChamberBlock.MODE) == SculkChamberMode.COOLDOWN_ANIM;
+//            boolean shouldClose = blockState.get(SculkChamberBlock.MODE) == SculkChamberMode.CHARGED_ANIM;
+//
+//            if (shouldOpen) {
+//                open(geoAnimatableAnimationState, blockState);
+//
+//                return PlayState.CONTINUE;
+//            }
+//            if (shouldClose) {
+//                close(geoAnimatableAnimationState, blockState);
+//
+//                return PlayState.CONTINUE;
+//            }
+//
+////            if (shouldAnimate) {
+////                world.setBlockState(pos, blockState.with(SculkChamberBlock.SHOULD_ANIMATE, false), Block.NOTIFY_ALL);
+//
+//
+////            }
+//        }
+//
+//        return PlayState.CONTINUE;
+//    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
+
+    @Override
+    public double getTick(Object blockEntity) {
+        return RenderUtils.getCurrentTick();
     }
 
     protected class VibrationCallback implements Vibrations.Callback {
