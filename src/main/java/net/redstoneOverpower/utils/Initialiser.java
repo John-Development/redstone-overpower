@@ -27,7 +27,7 @@ import static net.redstoneOverpower.RedstoneOverpower.MOD_ID;
 public class Initialiser {
 
   public static final LogicalComparatorBlock LOGICAL_COMPARATOR_BLOCK = new LogicalComparatorBlock(FabricBlockSettings.copyOf(Blocks.COMPARATOR));
-  public static final SculkChamberBlock SCULK_CHAMBER_BLOCK = new SculkChamberBlock(FabricBlockSettings.create().strength(1.0f));
+  public static final SculkChamberBlock SCULK_CHAMBER_BLOCK = new SculkChamberBlock(FabricBlockSettings.create().strength(1.0f).nonOpaque());
   public static final SculkNoteBlock SCULK_NOTE_BLOCK = new SculkNoteBlock(FabricBlockSettings.copyOf(Blocks.NOTE_BLOCK));
   public static final SculkPulserBlock SCULK_PULSER_BLOCK = new SculkPulserBlock(FabricBlockSettings.create().strength(1.0f));
   public static final DuctBlock DUCT_BLOCK = new DuctBlock(FabricBlockSettings.create().strength(1.0f));

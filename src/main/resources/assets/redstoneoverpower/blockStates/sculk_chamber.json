@@ -1,16 +1,16 @@
 {
   "variants": {
     "mode=listen": {
-      "model": "minecraft:block/observer"
+      "model": "redstoneoverpower:block/sculk_chamber"
     },
     "mode=isolated": {
-      "model": "minecraft:block/white_wool"
+      "model": "redstoneoverpower:block/sculk_chamber_blocked"
     },
     "mode=cooldown": {
-      "model": "minecraft:block/magenta_glazed_terracotta"
+      "model": "redstoneoverpower:block/sculk_chamber_blocked"
     },
     "mode=charged": {
-      "model": "minecraft:block/redstone_lamp_on"
+      "model": "redstoneoverpower:block/sculk_chamber_charged"
     }
   }
 }

@@ -64,7 +64,7 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
 
       public void set(int index, int value) {
         if (index == 0) {
-          slotState = value;
+          setSlotState(value);
         }
       }
 
@@ -74,7 +74,7 @@ public class DuctBlockEntity extends LootableContainerBlockEntity {
     };
   }
 
-  private void setSlotState (int value) {
+  public void setSlotState (int value) {
     this.slotState = value;
   }
 
