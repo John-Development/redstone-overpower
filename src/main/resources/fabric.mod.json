@@ -12,20 +12,20 @@
 		"sources": "https://github.com/John-Development/redstone-overpower"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/redstoneOverpower/icon.png",
+	"icon": "assets/redstoneoverpower/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-      		"net.redstoneOverpower.RedstoneOverpower"
+      		"net.redstoneoverpower.RedstoneOverpower"
 		],
 		"client": [
-      		"net.redstoneOverpower.RedstoneOverpowerClient"
+      		"net.redstoneoverpower.RedstoneOverpowerClient"
 		]
 	},
 	"mixins": [
-		"redstoneOverpower.mixins.json",
+		"redstoneoverpower.mixins.json",
 		{
-			"config": "redstoneOverpower.client.mixins.json",
+			"config": "redstoneoverpower.client.mixins.json",
 			"environment": "client"
 		}
 	],
