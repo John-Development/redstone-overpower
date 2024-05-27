@@ -4,7 +4,13 @@
 	"block.redstoneoverpower.sculk_note_block": "Sculk note block",
 	"block.redstoneoverpower.sculk_pulser": "Sculk pulser",
 	"block.redstoneoverpower.duct": "Duct",
+	"block.redstoneoverpower.budding_sculk_amethyst": "Budding sculk amethyst",
+	"block.redstoneoverpower.sculk_amethyst_cluster": "Sculk amethyst cluster",
+	"block.redstoneoverpower.large_sculk_amethyst_bud": "Large sculk amethyst cluster",
+	"block.redstoneoverpower.medium_sculk_amethyst_bud": "Medium sculk amethyst cluster",
+	"block.redstoneoverpower.small_sculk_amethyst_bud": "Small sculk amethyst cluster",
 	"container.redstoneoverpower.duct": "Duct item",
 	"gui.enable_filter": "Click to enable filter mode",
-	"gui.disable_filter": "Click to disable filter mode"
+	"gui.disable_filter": "Click to disable filter mode",
+	"subtitles.redstoneoverpower.sculk_note_block_sound": "Sculk noteblock"
 }

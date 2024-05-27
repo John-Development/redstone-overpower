@@ -131,7 +131,6 @@ public class DuctBlock extends BlockWithEntity implements Waterloggable {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        System.out.println("getPlacementState");
         World world = ctx.getWorld();
         BlockPos pos = ctx.getBlockPos();
         Direction dir = ctx.getSide().getOpposite();

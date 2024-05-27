@@ -3,7 +3,8 @@
   "package": "net.redstoneoverpower.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "block.piston.PistonHandlerMixin"
+    "block.piston.PistonHandlerMixin",
+    "block.sculk.SculkVeinMixin"
   ],
   "injectors": {
     "defaultRequire": 1

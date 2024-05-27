@@ -89,8 +89,7 @@ public abstract class PistonHandlerMixin {
     method = "tryMove",
     at = @At(
       value = "INVOKE",
-      target = "Lnet/minecraft/block/piston/PistonHandler;isAdjacentBlockStuck(Lnet/minecraft/block/BlockState;Lnet/minecraft/block/BlockState;)Z",
-      remap = false
+      target = "Lnet/minecraft/block/piston/PistonHandler;isAdjacentBlockStuck(Lnet/minecraft/block/BlockState;Lnet/minecraft/block/BlockState;)Z"
     )
   )
   private boolean isAdjacentBlockStuckRedirect(BlockState state, BlockState adjacentState, BlockPos pos, Direction dir) {

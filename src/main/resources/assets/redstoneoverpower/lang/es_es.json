@@ -4,7 +4,13 @@
     "block.redstoneoverpower.sculk_note_block": "Bloque musical de sculk",
     "block.redstoneoverpower.sculk_pulser": "Pulsador de sculk",
     "block.redstoneoverpower.duct": "Ducto",
+    "block.redstoneoverpower.budding_sculk_amethyst": "Brotador de amatista de sculk",
+    "block.redstoneoverpower.sculk_amethyst_cluster": "Cúmulo de amatista de sculk",
+    "block.redstoneoverpower.large_sculk_amethyst_bud": "Brote de amatista de sculk grande",
+    "block.redstoneoverpower.medium_sculk_amethyst_bud": "Brote de amatista de sculk mediano",
+    "block.redstoneoverpower.small_sculk_amethyst_bud": "Brote de amatista de sculk pequeño",
     "container.redstoneoverpower.duct": "Ducto",
     "gui.enable_filter": "Pulsa para activar modo filtro",
-    "gui.disable_filter": "Pulsa para desactivar modo filtro"
+    "gui.disable_filter": "Pulsa para desactivar modo filtro",
+    "subtitles.redstoneoverpower.sculk_note_block_sound": "Bloque musical de sculk"
 }

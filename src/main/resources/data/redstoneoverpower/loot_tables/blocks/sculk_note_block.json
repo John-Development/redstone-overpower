@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "redstoneoverpower:logical_comparator"
+          "name": "redstoneoverpower:sculk_note_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "redstoneoverpower:blocks/logical_comparator"
+  "random_sequence": "redstoneoverpower:blocks/sculk_note_block"
 }

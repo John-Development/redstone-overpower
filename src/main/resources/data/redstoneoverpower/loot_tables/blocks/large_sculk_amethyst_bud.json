@@ -23,11 +23,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "redstoneoverpower:sculk_chamber"
+          "name": "redstoneoverpower:large_sculk_amethyst_bud"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "redstoneoverpower:blocks/sculk_chamber"
+  "random_sequence": "redstoneoverpower:blocks/large_sculk_amethyst_bud"
 }

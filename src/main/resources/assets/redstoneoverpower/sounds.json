@@ -1,0 +1,8 @@
+{
+  "sculk_note_block_sound": {
+    "subtitle": "subtitles.redstoneoverpower.sculk_note_block_sound",
+    "sounds": [
+      "redstoneoverpower:sculk_note_block_sound"
+    ]
+  }
+}

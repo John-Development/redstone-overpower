@@ -3,15 +3,24 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "redstoneoverpower:duct",
           "functions": [
             {
-              "function": "minecraft:explosion_decay"
+              "function": "minecraft:copy_components",
+              "include": [
+                "minecraft:custom_name"
+              ],
+              "source": "block_entity"
             }
-          ]
+          ],
+          "name": "redstoneoverpower:duct"
         }
       ],
       "rolls": 1.0

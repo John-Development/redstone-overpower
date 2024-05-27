@@ -15,5 +15,10 @@ public class RedstoneOverpowerClient implements ClientModInitializer {
 		HandledScreens.register(DUCT_SCREEN_HANDLER, DuctScreen::new);
 
 		BlockRenderLayerMap.INSTANCE.putBlock(LOGICAL_COMPARATOR_BLOCK, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SCULK_PULSER_BLOCK, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SCULK_AMETHIST_CLUSTER_BLOCK, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(LARGE_SCULK_AMETHIST_BUD_BLOCK, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(MEDIUM_SCULK_AMETHIST_BUD_BLOCK, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SMALL_SCULK_AMETHIST_BUD_BLOCK, RenderLayer.getCutout());
 	}
 }

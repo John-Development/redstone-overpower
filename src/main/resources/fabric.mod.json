@@ -23,7 +23,7 @@
 		]
 	},
 	"mixins": [
-		"redstoneoverpower.mixins.json",
+      	"redstoneoverpower.mixins.json",
 		{
 			"config": "redstoneoverpower.client.mixins.json",
 			"environment": "client"

@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"particle": "redstoneoverpower:block/sculk_chamber_side_block",
 		"side": "redstoneoverpower:block/sculk_chamber_side_block",
