@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-      		"net.redstoneoverpower.RedstoneOverpower"
+      		"net.HearthianDev.redstoneoverpower.RedstoneOverpower"
 		],
 		"client": [
-      		"net.redstoneoverpower.RedstoneOverpowerClient"
+      		"net.HearthianDev.redstoneoverpower.RedstoneOverpowerClient"
 		]
 	},
 	"mixins": [
